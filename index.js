@@ -1,5 +1,5 @@
 
-//  PUBLIC API ACCESS: api access https://api.spoonacular.com/recipes/complexSearch?apiKey=f9f16fb47ec741b7a2a86b74dcfbbfa3
+
 
 
 const item = document.querySelector(".search-results-grid")
@@ -18,6 +18,7 @@ fetch("http://localhost:3000/recipes")
 }
 // function to add recipes to the DOM 
 function renderMainRecipe(results){
+        
     let oneRecipe = document.createElement('div')
     oneRecipe.innerHTML=`
     <div class="description">
@@ -30,6 +31,8 @@ function renderMainRecipe(results){
     let voteButton = oneRecipe.querySelector('button')
     
     item.appendChild(oneRecipe)
+
+ 
 
     //EventListener to increase number of votes
     voteButton.addEventListener('click', (e)=> {
@@ -65,10 +68,10 @@ let query = e.target["form-input"].value
 //console.log(query)
 searchForm.reset()
 item.replaceChildren()
-fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=f9f16fb47ec741b7a2a86b74dcfbbfa3&query=${query}`)
+fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=####=${query}`)
 .then( r=> r.json())
 .then(responseObject =>{
-    (responseObject.results).forEach((results)=>renderRecipe(results))
+    responseObject.results.forEach((results)=>renderRecipe(results))
     //console.log(responseObject.results)
 })
 
